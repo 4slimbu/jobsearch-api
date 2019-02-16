@@ -26,6 +26,9 @@ class PostCreateRequest extends ApiRequest
             'post_body' => 'string|required',
             'location_id' => 'integer|required',
             'category_id' => 'integer|required',
+            'post_images' => 'array|nullable',
+            'post_images.*' => 'file|nullable',
+            'selected_image' => 'integer|nullable',
         ];
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $table = 'posts';
+    static public $POST_IMAGES_AWS_PATH = 'loksewa/{userId}/{postId}';
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +24,7 @@ class Post extends Model
     ];
 
     protected $with = [
-        'location', 'category', 'comments'
+        'media', 'location', 'category', 'comments'
     ];
 
     public function location()
@@ -39,6 +40,11 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function media()
+    {
+        return $this->hasMany(Media::class, 'post_id');
     }
 
 }

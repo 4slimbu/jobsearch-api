@@ -16,8 +16,4 @@ class Media extends Model
         'is_primary', 'post_id', 'user_id', 'url'
     ];
 
-    public function post()
-    {
-        return $this->belongsTo(Post::class, 'post_id');
-    }
 }

@@ -5,6 +5,7 @@ namespace App\Acme\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Acme\Resources\Core\CategoryResource;
 use App\Acme\Resources\Core\LocationResource;
+use App\Acme\Resources\MediaResource;
 
 class PostResource extends JsonResource
 {
@@ -24,6 +25,7 @@ class PostResource extends JsonResource
             'created_at' => (string)$this->created_at,
             'category' => new CategoryResource($this->whenLoaded('category')),
             'location' => new LocationResource($this->whenLoaded('location')),
+            'postImages' => new MediaResource($this->whenLoaded('media')),
         ];
         return $post;
     }
