@@ -32,6 +32,13 @@ Route::prefix('v1')->namespace('\App\Acme\Controllers')->group(function() {
     Route::get('posts/{postId}', 'PostController@show');
     Route::delete('posts/{postId}', 'PostController@destroy');
 
+    // Comments
+    Route::get('comments/{postId}', 'CommentController@index');
+    Route::post('comments', 'CommentController@create');
+    Route::put('comments/{commentId}', 'CommentController@update');
+    Route::get('commentId/{commentId}', 'CommentController@show');
+    Route::delete('comments/{commentId}', 'CommentController@destroy');
+
     // Locations
     Route::get('locations', 'LocationController@index');
 

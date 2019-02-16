@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Acme\Resources\Core\CategoryResource;
 use App\Acme\Resources\Core\LocationResource;
 
-class PostResource extends JsonResource
+class CommentResource extends JsonResource
 {
     /**
      * Transform the resource collection into an array.
@@ -16,15 +16,13 @@ class PostResource extends JsonResource
      */
     public function toArray($request)
     {
-        $post = [
+        $comment = [
             'id' => (integer)$this->id,
             'user_id' => (integer)$this->user_id,
-            'title' => (string)$this->post_title,
-            'body' => (string)$this->post_body,
+            'post_id' => (integer)$this->post_id,
+            'body' => (string)$this->comment_body,
             'created_at' => (string)$this->created_at,
-            'category' => new CategoryResource($this->whenLoaded('category')),
-            'location' => new LocationResource($this->whenLoaded('location')),
         ];
-        return $post;
+        return $comment;
     }
 }
