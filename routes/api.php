@@ -18,7 +18,6 @@ Route::prefix('v1')->namespace('\App\Acme\Controllers')->group(function() {
     Route::delete('users/{userId}', 'UserController@destroy')->where('userId', '[0-9]+');
     Route::get('users/check-email', 'UserController@checkEmail');
 
-    
 
     // Me
     Route::get('me', 'MeController@show');
@@ -26,24 +25,17 @@ Route::prefix('v1')->namespace('\App\Acme\Controllers')->group(function() {
     Route::put('me/update-email', 'MeController@updateEmail');
     Route::put('me/reset-password', 'MeController@resetPassword');
 
-
-
-    Route::get('categories', 'CategoryController@index');
-    Route::get('pay-types', 'PayTypeController@index');
-
-
-    // Jobs
-    Route::get('jobs', 'JobController@index');
-    Route::post('jobs', 'JobController@create');
-    Route::post('jobs/publish', 'JobController@publish');
-    Route::put('jobs/{jobUuid}', 'JobController@update');
-    Route::get('jobs/{jobUuid}', 'JobController@show');
-    Route::get('jobs/{jobUuid}/applications', 'JobController@showJobApplications');
-    Route::put('jobs/{jobUuid}/expire', 'JobController@expire');
-    Route::put('jobs/{jobUuid}/save-ecomm', 'JobController@saveEcomm');
-    Route::delete('jobs/{jobUuid}', 'JobController@destroy');
+    // Posts
+    Route::get('posts', 'PostController@index');
+    Route::post('posts', 'PostController@create');
+    Route::put('posts/{postId}', 'PostController@update');
+    Route::get('posts/{postId}', 'PostController@show');
+    Route::delete('posts/{postId}', 'PostController@destroy');
 
     // Locations
     Route::get('locations', 'LocationController@index');
+
+    // Category
+    Route::get('categories', 'CategoryController@index');
 
 });

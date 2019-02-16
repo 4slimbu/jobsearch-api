@@ -2,7 +2,6 @@
 
 namespace App\Acme\Models;
 
-use App\Acme\Models\Core\CoreAccount;
 use App\Acme\Models\Core\CoreProduct;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -19,7 +18,7 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     protected $fillable = [
-        'id', 'account_id', 'first_name', 'last_name', 'contact_number', 'email', 'password', 'verified', 'email_token',
+        'id', 'first_name', 'last_name', 'contact_number', 'email', 'password', 'verified', 'email_token',
     ];
 
     protected $hidden = [
@@ -28,10 +27,6 @@ class User extends Authenticatable implements JWTSubject
 
     protected $appends = [
         'full_name',
-    ];
-
-    protected $with = [
-        'account',
     ];
 
     public function getJWTIdentifier()
@@ -56,15 +51,6 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(UserEmailReset::class);
     }
 
-    public function account()
-    {
-        return $this->belongsTo(CoreAccount::class, 'account_id');
-    }
-
-    public function brands()
-    {
-        return $this->belongsToMany(Brand::class, 'core_brand_user', 'user_id', 'brand_id');
-    }
 
     public function roles()
     {
@@ -87,30 +73,7 @@ class User extends Authenticatable implements JWTSubject
         );
     }
 
-    public function inventories()
-    {
-        return CoreProduct::with(['accountInventory' => function ($query){
-            $query->where('account_id', $this->account_id);
-        }])->get();
-    }
-
-    /**
-     * Gets the first inventory record which has qty_available, or is_unlimited. Unlimited inventory items trump all and
-     * will be returned first.
-     *
-     * @return mixed
-     */
-    public function getAvailableInventory($productId)
-    {
-        return $this->account->inventories()
-            ->where(function ($query) {
-                $query->where('qty_available', '>', 0)->orWhere('is_unlimited', '<>', 0);
-            })
-            ->where('product_id', $productId)
-            ->orderByRaw('`is_unlimited` DESC, `id` ASC')
-            ->first();
-    }
-
+    
     public function getFullNameAttribute()
     {
         $output = '';
@@ -141,10 +104,6 @@ class User extends Authenticatable implements JWTSubject
 
         if (!empty($params['email'])) {
             $query = $query->where('email', 'LIKE', '%' . $params['email'] . '%');
-        }
-
-        if (!empty($params['account_id'])) {
-            $query = $query->where('account_id', '=',$params['account_id']);
         }
 
         if (!empty($params['orderBy'])) {

@@ -3,7 +3,7 @@
 namespace App\Acme\Services;
 
 use App\Acme\Models\Category;
-use App\Acme\Resources\CategoryResource;
+use App\Acme\Resources\Core\CategoryResource;
 
 class CategoryService extends ApiServices
 {

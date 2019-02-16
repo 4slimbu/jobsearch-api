@@ -53,7 +53,7 @@ class UserService extends ApiServices
             return $this->respondWithNotAllowed();
         }
 
-        $user = User::with(['account', 'roles'])->findOrFail($input['user_id']);
+        $user = User::with(['roles'])->findOrFail($input['user_id']);
         return new UserResource($user);
     }
 

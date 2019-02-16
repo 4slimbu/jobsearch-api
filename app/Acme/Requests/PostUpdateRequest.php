@@ -2,7 +2,7 @@
 
 namespace App\Acme\Requests;
 
-class JobGetRequest extends ApiRequest
+class PostUpdateRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,10 @@ class JobGetRequest extends ApiRequest
     public function rules()
     {
         return [
-            'query' => 'string|nullable',
-            'job_status' => 'required|string',
+            'post_title' => 'string|required',
+            'post_body' => 'string|required',
+            'location_id' => 'integer|required',
+            'category_id' => 'integer|required',
         ];
     }
 }

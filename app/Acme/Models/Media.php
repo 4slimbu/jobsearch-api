@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Media extends Model
 {
-    protected $table = 'core_media';
 
     /**
      * The attributes that are mass assignable.
@@ -14,11 +13,11 @@ class Media extends Model
      * @var array
      */
     protected $fillable = [
-        'entity_type_id', 'is_primary', 'media_type_id', 'value', 'user_id'
+        'is_primary', 'post_id', 'user_id', 'url'
     ];
 
-    public function brand()
+    public function post()
     {
-        return $this->belongsTo(Brand::class, 'brand_id');
+        return $this->belongsTo(Post::class, 'post_id');
     }
 }

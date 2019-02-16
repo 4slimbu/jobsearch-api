@@ -8,13 +8,8 @@ class Location extends Model
 {
     protected $table = 'core_locations';
 
-    public function job()
+    public function post()
     {
-        return $this->hasMany(JobEcomm::class, 'location_id');
-    }
-
-	public function locationType()
-	{
-		return $this->belongsTo(LocationType::class, 'type', 'type');
+        return $this->hasMany(Post::class, 'location_id');
     }
 }

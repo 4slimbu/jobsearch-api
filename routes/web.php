@@ -11,5 +11,6 @@
 |
 */
 
-Route::get('/', function () {   return  redirect('http://www.careerone.com.au/');  });
-
+Route::get('/', function () {
+    return 'Welcome to LokSewa';
+ });
