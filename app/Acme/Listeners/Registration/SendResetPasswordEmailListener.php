@@ -27,8 +27,6 @@ class SendResetPasswordEmailListener
      */
     public function handle(UserForgotPasswordEvent $event)
     {
-        (new ResetPasswordEmail())->withData([
-            'reset_url' => config('app.portal_url') . '/reset-password?token=' . $event->token . '&email=' . $event->user['email']
-        ])->sendTo($event->user);
+        Mail::to($event->user->email)->send(new ResetPasswordEmail($event->user));
     }
 }

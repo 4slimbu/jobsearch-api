@@ -11,15 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-		DB::table('accounts')->truncate();
-		DB::table('users')->truncate();
-		DB::table('companies')->truncate();
-		
+		  DB::table('users')->truncate();		
 
-		$this->call([
-			AccountsTableSeeder::class,
-			UsersTableSeeder::class,
-			CompaniesTableSeeder::class
-		]);
+      $this->call([
+        UsersTableSeeder::class,
+      ]);
     }
 }

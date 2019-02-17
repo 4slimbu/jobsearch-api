@@ -25,7 +25,8 @@ class PostResource extends JsonResource
             'created_at' => (string)$this->created_at,
             'category' => new CategoryResource($this->whenLoaded('category')),
             'location' => new LocationResource($this->whenLoaded('location')),
-            'postImages' => new MediaResource($this->whenLoaded('media')),
+            'postImages' => MediaResource::collection($this->whenLoaded('media')),
+            'postComments' => CommentResource::collection($this->whenLoaded('comments')),
         ];
         return $post;
     }

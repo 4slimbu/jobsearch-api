@@ -14,7 +14,7 @@ class PostService extends ApiServices
 
     public function getPosts($input, $user)
     {
-        $posts = Post::get();
+        $posts = Post::orderBy('created_at', 'DESC')->paginate($input['limit'] ?? 10);
         return PostResource::collection($posts);
     }
 
@@ -62,7 +62,6 @@ class PostService extends ApiServices
     public function getPost($input, $user)
     {
         $post = Post::where('id', $input['id'])->firstOrFail();
-        // dd($post);
         return new PostResource($post);
     }
 

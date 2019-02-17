@@ -2,19 +2,34 @@
 
 namespace App\Acme\Emails;
 
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Acme\Models\User;
 
-class WelcomeEmail extends CampaignMonitorEmail
+
+class WelcomeEmail extends Mailable
 {
-    public function getEmailId()
+    use Queueable, SerializesModels;
+    public $user;
+    
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct(User $user)
     {
-        return '8985c7bf-280a-469b-b5d5-215041b9b179';
+        $this->user = $user;
     }
-
-    public function variables($user)
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
     {
-        return [
-            'firstname' => $user->first_name,
-            'x-apple-data-detectors' => true,
-        ];
+        return $this->markdown('emails.welcome');
     }
 }

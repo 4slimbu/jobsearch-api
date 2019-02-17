@@ -6,6 +6,7 @@ use App\Acme\Emails\WelcomeEmail;
 use App\Acme\Events\Registration\UserRegisteredEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Mail;
 
 class SendWelcomeEmailListener
 {
@@ -27,6 +28,6 @@ class SendWelcomeEmailListener
      */
     public function handle(UserRegisteredEvent $event)
     {
-        (new WelcomeEmail())->sendTo($event->user);
+        Mail::to($event->user->email)->send(new WelcomeEmail($event->user));
     }
 }

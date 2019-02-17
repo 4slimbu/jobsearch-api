@@ -29,7 +29,7 @@ class Post extends Model
 
     public function location()
     {
-        return $this->belongsTo(Location::class);
+        return $this->belongsTo(Location::class, 'location_id');
     }
 
     public function category()
@@ -39,7 +39,7 @@ class Post extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'post_id');
     }
 
     public function media()

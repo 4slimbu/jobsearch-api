@@ -2,18 +2,34 @@
 
 namespace App\Acme\Emails;
 
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Acme\Models\User;
 
-class ResetPasswordEmail extends CampaignMonitorEmail
+
+class ResetPasswordEmail extends Mailable
 {
-    public function getEmailId()
+    use Queueable, SerializesModels;
+    public $user;
+    
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct(User $user)
     {
-        return '6c90e125-9c80-402e-aa41-7e0acd501e3c';
+        $this->user = $user;
     }
-
-    public function variables($user, $reset_url)
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
     {
-        return [
-            'reset_url' => $reset_url,
-        ];
+        return $this->markdown('emails.reset_password');
     }
 }
