@@ -6,6 +6,7 @@ use App\Acme\Emails\ResetPasswordEmail;
 use App\Acme\Events\Registration\UserForgotPasswordEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Mail;
 
 class SendResetPasswordEmailListener
 {
@@ -27,6 +28,9 @@ class SendResetPasswordEmailListener
      */
     public function handle(UserForgotPasswordEvent $event)
     {
+        /**
+         * Todo: This is not required as Auth is handled by laravel. But still confirm it.
+         */
         Mail::to($event->user->email)->send(new ResetPasswordEmail($event->user));
     }
 }
