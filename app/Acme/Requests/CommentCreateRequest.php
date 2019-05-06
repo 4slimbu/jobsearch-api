@@ -23,6 +23,7 @@ class CommentCreateRequest extends ApiRequest
     {
         return [
             'post_id' => 'integer|required',
+            'parent_id' => 'integer',
             'comment_body' => 'string|required',
         ];
     }

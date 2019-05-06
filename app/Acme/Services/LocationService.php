@@ -2,7 +2,7 @@
 
 namespace App\Acme\Services;
 
-use App\Acme\Resources\LocationResource;
+use App\Acme\Resources\Core\LocationResource;
 use DB;
 use App\Acme\Models\Location;
 use Illuminate\Support\Collection;

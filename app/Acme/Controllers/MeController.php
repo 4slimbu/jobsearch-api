@@ -39,4 +39,10 @@ class MeController extends ApiController
         $input = $request->getInput();
         return $this->meService->resetMyPassword($input);
     }
+
+    public function updatePreferences(MeUpdateRequest $request)
+    {
+        $input = $request->getInput();
+        return $this->meService->updateMyPreferences($input);
+    }
 }

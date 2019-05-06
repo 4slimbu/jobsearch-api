@@ -22,8 +22,9 @@ class LoginRequest extends ApiRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required|string',
+            'email' => 'required_without:fb_token|email',
+            'password' => 'required_without:fb_token|string',
+            'fb_token' => 'required_without:email,password|string'
         ];
     }
 }

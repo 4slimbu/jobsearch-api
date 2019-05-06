@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Acme\Resources\Core;
+namespace App\Acme\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class PostUserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,13 +19,6 @@ class UserResource extends JsonResource
             'first_name' => (string)$this->first_name,
             'last_name' => (string)$this->last_name,
             'full_name' => (string)$this->full_name,
-            'gender' => (string)$this->gender,
-            'contact_number' => (string)$this->contact_number,
-            'email' => (string)$this->email,
-            'verified' => (bool)$this->verified,
-            'preferences' => (object)$this->preferences,
-            'profile_pic' => (string)$this->profile_pic,
-            'roles' => RoleResource::collection($this->whenLoaded('roles')),
         ];
     }
 }

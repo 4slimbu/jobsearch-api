@@ -28,6 +28,8 @@ class VerifyEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.verify');
+        if (! $this->user && $this->user->verified) {
+            return $this->markdown('email.verify');
+        }
     }
 }

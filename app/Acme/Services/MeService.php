@@ -19,6 +19,14 @@ class MeService extends ApiServices
         return new UserResource(auth()->user());
     }
 
+    public function updateMyPreferences($input)
+    {
+        $user = auth()->user();
+        $user->fill(["preferences" => $input['preferences']]);
+        $user->save();
+        return new UserResource($user);
+    }
+
     public function updateMyDetails($input)
     {
         $user = auth()->user();

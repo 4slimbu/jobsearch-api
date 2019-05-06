@@ -21,11 +21,17 @@ class Post extends Model
         'post_body',
         'location_id',
         'category_id',
+        'expire_at'
     ];
 
     protected $with = [
         'media', 'location', 'category', 'comments'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function location()
     {
@@ -40,6 +46,12 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class, 'post_id');
+    }
+
+    public function myComments()
+    {
+        return $this->hasMany(Comment::class, 'post_id')
+            ->where('user_id', auth()->user()->id);
     }
 
     public function media()

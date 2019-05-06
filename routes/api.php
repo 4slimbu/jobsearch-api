@@ -35,6 +35,7 @@ Route::prefix('v1')->namespace('\App\Acme\Controllers')->group(function() {
     // Comments
     Route::get('comments/{postId}', 'CommentController@index');
     Route::post('comments', 'CommentController@create');
+    Route::get('mycomments', 'CommentController@myComments');
     Route::put('comments/{commentId}', 'CommentController@update');
     Route::get('commentId/{commentId}', 'CommentController@show');
     Route::delete('comments/{commentId}', 'CommentController@destroy');

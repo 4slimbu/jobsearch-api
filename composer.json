@@ -14,6 +14,7 @@
         "barryvdh/laravel-cors": "^0.11.0",
         "campaignmonitor/createsend-php": "^6.0",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "~1.0",

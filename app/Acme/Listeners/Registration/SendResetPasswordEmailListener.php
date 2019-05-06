@@ -31,6 +31,6 @@ class SendResetPasswordEmailListener
         /**
          * Todo: This is not required as Auth is handled by laravel. But still confirm it.
          */
-        Mail::to($event->user->email)->send(new ResetPasswordEmail($event->user));
+        Mail::to($event->user->email)->send(new ResetPasswordEmail($event->user, $event->token));
     }
 }

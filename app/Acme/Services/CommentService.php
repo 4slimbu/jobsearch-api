@@ -3,6 +3,7 @@
 namespace App\Acme\Services;
 
 use App\Acme\Models\Comment;
+use App\Acme\Models\Post;
 use App\Acme\Resources\CommentResource;
 use App\Acme\Traits\ApiResponseTrait;
 
@@ -12,7 +13,23 @@ class CommentService extends ApiServices
 
     public function getComments($input, $user)
     {
-        $comments = Comment::where('post_id', $input['post_id'])->get();
+        $post_author = Post::find($input['post_id']);
+        if ($user->id === $post_author->user_id) {
+            $comments = Comment::where('post_id', $input['post_id'])->get();
+        } else {
+            $comments = Comment::where('post_id', $input['post_id'])
+                ->where('user_id', $user->id)->get();
+        }
+
+        return CommentResource::collection($comments);
+    }
+
+    public function getMyComments($user)
+    {
+        $comments = Comment::where('user_id', $user->id);
+
+        $comments = $comments->paginate(10);
+
         return CommentResource::collection($comments);
     }
 

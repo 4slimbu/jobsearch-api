@@ -4,6 +4,7 @@ namespace App\Acme\Services;
 
 use App\Acme\Events\Registration\UserForgotPasswordEvent;
 use App\Acme\Exceptions\ServerErrorException;
+use App\Acme\Models\PasswordReset;
 use App\Acme\Models\User;
 use App\Acme\Models\UserEmailReset;
 use App\Acme\Resources\Core\UserResource;
@@ -156,10 +157,17 @@ class UserService extends ApiServices
         $user = User::email($input['email'])->firstOrFail();
 
         $token = Password::getRepository()->create($user);
+
         if (empty($token)) {
             throw new ServerErrorException();
         }
 
-        event(new UserForgotPasswordEvent($user, $token));
+        // This is a little hack to decrease the token length
+        $row = PasswordReset::where('email', $user->email)->first();
+        $short_token = mt_rand(10000000, 99999999);
+        $row->token = bcrypt($short_token);
+        $row->save();
+
+        event(new UserForgotPasswordEvent($user, $short_token));
     }
 }
