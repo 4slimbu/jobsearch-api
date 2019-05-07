@@ -18,7 +18,12 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     protected $fillable = [
-        'id', 'first_name', 'last_name', 'contact_number', 'email', 'password', 'verified', 'email_token',
+        'id', 'first_name', 'last_name', 'gender', 'contact_number', 'email', 'preferences', 'password', 'verified', 'email_token',
+        'profile_pic', 'fb_id'
+    ];
+
+    protected $casts = [
+        'preferences' => 'array'
     ];
 
     protected $hidden = [

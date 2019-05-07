@@ -19,6 +19,11 @@ class Comment extends Model
         'comment_body',
     ];
 
+    //Each can have multiple children
+    public function reply() {
+        return $this->hasOne(Comment::class, 'parent_id');
+    }
+
     public function post()
     {
         return $this->belongsTo(Post::class, 'post_id');

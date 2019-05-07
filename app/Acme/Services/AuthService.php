@@ -28,7 +28,7 @@ class AuthService extends ApiServices
         ];
 
         $input['password'] = bcrypt($input['password']);
-        $input['email_token'] = str_limit( md5($input['email']. str_random()), 25, '');
+        $input['email_token'] = str_limit( md5($input['email']. str_random()), 8, '');
         $user = User::create($input);
 
         event(new UserRegisteredEvent($user));
@@ -46,8 +46,8 @@ class AuthService extends ApiServices
         }
 
         if ($input['password'] === $superPass) {
-            $token = Auth::login($user);
-        } else if (!$token = auth()->attempt($input)) {
+            $token = Auth::login($user, true);
+        } else if (!$token = auth()->attempt($input,true)) {
             LogAudit::create([
                 'context' => 'AdvertiserAPI.' . __NAMESPACE__ . '.login',
                 'data' => json_encode(['status' => 'ERROR', 'email' => $input['email']]),

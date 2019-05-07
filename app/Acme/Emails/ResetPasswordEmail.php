@@ -13,15 +13,18 @@ class ResetPasswordEmail extends Mailable
 {
     use Queueable, SerializesModels;
     public $user;
-    
+    public $token;
+
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param User $user
+     * @param null $token
      */
-    public function __construct(User $user)
+    public function __construct(User $user, $token = null)
     {
         $this->user = $user;
+        $this->token = $token;
     }
     /**
      * Build the message.
@@ -30,6 +33,9 @@ class ResetPasswordEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.reset_password');
+        return $this->markdown('emails.reset-password')->with([
+            'name' => $this->user->first_name . ' ' . $this->user->last_name,
+            'token' => $this->token
+        ]);
     }
 }

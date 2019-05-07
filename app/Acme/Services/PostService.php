@@ -14,7 +14,27 @@ class PostService extends ApiServices
 
     public function getPosts($input, $user)
     {
-        $posts = Post::orderBy('created_at', 'DESC')->paginate($input['limit'] ?? 10);
+        $posts = Post::orderBy('created_at', 'DESC');
+
+        if (isset($input['category'])) {
+          $posts = $posts->where('category_id', $input['category']);
+        };
+
+        if (isset($input['search'])) {
+            $posts = $posts->where('post_title', 'LIKE', "%{$input['search']}%")
+                    ->orWhere('post_body', 'LIKE', "%{$input['search']}%");
+        }
+
+        if (isset($input['type']) && $input['type'] === 'my') {
+            $posts = $posts->where('user_id', auth()->user()->id);
+        }
+
+        if (isset($input['type']) && $input['type'] === 'saved') {
+            $posts = $posts->whereIn('id', auth()->user()->preferences['savedPosts']);
+        }
+
+        $posts = $posts->paginate($input['limit'] ?? 10);
+
         return PostResource::collection($posts);
     }
 
@@ -22,7 +42,7 @@ class PostService extends ApiServices
     {
         $input['user_id'] = $user->id;
         $post = Post::create($input);
-        
+
         if(isset($input['post_images']))
         {
             $count = 0;

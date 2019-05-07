@@ -55,4 +55,10 @@ class CommentController extends ApiController
         $user = auth()->user();
         return $this->commentService->destroyComment($input, $user);
     }
+
+    public function myComments()
+    {
+        $user = auth()->user();
+        return $this->commentService->getMyComments($user);
+    }
 }

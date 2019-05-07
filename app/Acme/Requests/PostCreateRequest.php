@@ -29,6 +29,7 @@ class PostCreateRequest extends ApiRequest
             'post_images' => 'array|nullable',
             'post_images.*' => 'file|nullable',
             'selected_image' => 'integer|nullable',
+            'expire_at' => 'string|nullable'
         ];
     }
 }

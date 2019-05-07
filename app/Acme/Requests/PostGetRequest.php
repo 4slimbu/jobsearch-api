@@ -23,6 +23,10 @@ class PostGetRequest extends ApiRequest
     {
         return [
             'query' => 'string|nullable',
+            'limit' => 'numeric|nullable',
+            'category' => 'numeric|nullable',
+            'search' => 'string|nullable',
+            'type' => 'string|nullable',
         ];
     }
 }
