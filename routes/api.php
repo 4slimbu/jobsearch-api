@@ -8,6 +8,7 @@ Route::prefix('v1')->namespace('\App\Acme\Controllers')->group(function() {
     Route::put('reset-password', 'AuthController@resetPassword');
     Route::put('verify-email/{token}', 'AuthController@verifyEmail');
     Route::put('reset-email', 'AuthController@resetEmail');
+    Route::get('resend-verification-code', 'AuthController@reSendVerificationCode');
     Route::put('refresh-token', 'AuthController@refreshToken');
 
     // Users
@@ -21,14 +22,14 @@ Route::prefix('v1')->namespace('\App\Acme\Controllers')->group(function() {
 
     // Me
     Route::get('me', 'MeController@show');
-    Route::put('me', 'MeController@update');
+    Route::post('me', 'MeController@update');
     Route::put('me/update-email', 'MeController@updateEmail');
     Route::put('me/reset-password', 'MeController@resetPassword');
 
     // Posts
     Route::get('posts', 'PostController@index');
     Route::post('posts', 'PostController@create');
-    Route::put('posts/{postId}', 'PostController@update');
+    Route::post('posts/{postId}', 'PostController@update');
     Route::get('posts/{postId}', 'PostController@show');
     Route::delete('posts/{postId}', 'PostController@destroy');
 

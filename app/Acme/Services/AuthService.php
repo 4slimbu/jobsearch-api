@@ -3,6 +3,7 @@
 namespace App\Acme\Services;
 
 use App\Acme\Events\Registration\UserRegisteredEvent;
+use App\Acme\Events\Registration\UserVerifyEvent;
 use App\Acme\Models\LogAudit;
 use App\Acme\Models\RuntimeConfig;
 use App\Acme\Models\User;
@@ -91,5 +92,19 @@ class AuthService extends ApiServices
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => new UserResource(auth()->user()),
         ];
+    }
+
+    public function reSendVerificationCode()
+    {
+        $user = auth()->user();
+        if (! $user) {
+            return $this->respondWithNotAllowed();
+        }
+
+        $email_token = str_limit( md5($user->email. str_random()), 8, '');
+        $user->email_token = $email_token;
+        $user->save();
+
+        event(new UserVerifyEvent($user, $email_token));
     }
 }

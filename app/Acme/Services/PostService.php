@@ -2,6 +2,7 @@
 
 namespace App\Acme\Services;
 
+use App\Acme\Models\Media;
 use App\Acme\Models\Post;
 use App\Acme\Resources\PostResource;
 use App\Acme\Traits\ApiResponseTrait;
@@ -76,6 +77,32 @@ class PostService extends ApiServices
         }
 
         $post->update($input);
+
+        if(isset($input['post_images']))
+        {
+            $count = 0;
+            foreach ($input['post_images'] as $postImage)
+            {
+                $fileS3 = Storage::disk('s3')->put(
+                    str_replace('{userId}',$user->id,str_replace('{postId}', $post->id, Post::$POST_IMAGES_AWS_PATH)),
+                    $postImage,'public'
+                );
+                $filePath =  'https://s3-' . config('filesystems.disks.s3.region') . '.amazonaws.com/' . config('filesystems.disks.s3.bucket') . '/'. $fileS3;
+
+                $inputMedia = array();
+                $inputMedia['is_primary'] = $count == $input['selected_image']?true:NULL;
+                $inputMedia['user_id'] = $user->id;
+                $inputMedia['url'] = $filePath;
+                $filePathCollection[] = $filePath;
+                $media = $post->media()->create($inputMedia);
+                $count++;
+            }
+        }
+
+        if (isset($input['images_to_remove'])) {
+            Media::whereIn('id', $input['images_to_remove'])->delete();
+        }
+
         return new PostResource($post);
     }
 

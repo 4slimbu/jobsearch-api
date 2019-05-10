@@ -22,10 +22,14 @@ class PostUpdateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'post_title' => 'string|required',
-            'post_body' => 'string|required',
-            'location_id' => 'integer|required',
-            'category_id' => 'integer|required',
+            'post_title' => 'string',
+            'post_body' => 'string',
+            'location_id' => 'integer',
+            'category_id' => 'integer',
+            'post_images' => 'array',
+            'selected_image' => 'integer|nullable',
+            'images_to_remove' => 'array|nullable',
+            'expire_at' => 'string|nullable'
         ];
     }
 }
