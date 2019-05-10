@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Acme\Events\Registration\UserForgotPasswordEvent' => [
             'App\Acme\Listeners\Registration\SendResetPasswordEmailListener',
         ],
+        'App\Acme\Events\Registration\UserVerifyEvent' => [
+            'App\Acme\Listeners\Registration\SendVerificationEmailListener',
+        ],
     ];
 
     /**

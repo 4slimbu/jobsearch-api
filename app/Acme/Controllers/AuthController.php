@@ -123,6 +123,10 @@ class AuthController extends ApiController
         return $this->userService->resetUserPassword($input);
     }
 
+    public function reSendVerificationCode()
+    {
+        return $this->authService->reSendVerificationCode();
+    }
     public function verifyEmail($token)
     {
         $input['token'] = $token;
