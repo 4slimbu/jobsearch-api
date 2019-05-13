@@ -29,11 +29,10 @@ class MeController extends ApiController
 
         if(isset($input['profile_pic']))
         {
-            $imageName = str_random(30) . '.jpeg';
-
-            $p = Storage::disk('s3')->put('profile/' . $imageName, $input['profile_pic'], 'public');
-
-            $filePath =  'https://s3-' . config('filesystems.disks.s3.region') . '.amazonaws.com/loksewa/profile/' . $imageName;
+//            $imageExtension = $input['profile_pic']->getClientOriginalExtension();
+//            $imageName = 'newtest' . str_random(30) . '.' . $imageExtension;
+            $fileS3 = Storage::disk('s3')->put('profile', $input['profile_pic'], 'public');
+            $filePath =  'https://s3-' . config('filesystems.disks.s3.region') . '.amazonaws.com/' . config('filesystems.disks.s3.bucket') . '/'. $fileS3;
 
             $input['profile_pic'] = $filePath;
         }

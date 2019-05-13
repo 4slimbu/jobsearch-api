@@ -2,6 +2,7 @@
 
 namespace App\Acme\Services;
 
+use App\Acme\Events\PostCreatedEvent;
 use App\Acme\Models\Media;
 use App\Acme\Models\Post;
 use App\Acme\Resources\PostResource;
@@ -65,6 +66,7 @@ class PostService extends ApiServices
             }
         }
 
+        event(new PostCreatedEvent($post));
         return new PostResource($post);
     }
 

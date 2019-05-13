@@ -38,15 +38,17 @@ class AuthController extends ApiController
     {
         $input = $request->getInput();
         if (isset($input['fb_token'])) {
-            return $this->facebookLogin($input['fb_token']);
+            return $this->facebookLogin($input);
         }
 
         return $this->authService->login($input);
     }
 
     // TODO: refactor this code
-    private function facebookLogin($fb_token)
+    private function facebookLogin($input)
     {
+        $fb_token = $input['fb_token'];
+        $device_id = $input['device_id'];
         $fb_access_token = env('FACEBOOK_APP_ID') . '|' . env('FACEBOOK_APP_SECRET');
         $verify_fb_token_url = "https://graph.facebook.com/debug_token?input_token=" . $fb_token . "&access_token=" . $fb_access_token;
         $res = $this->client->get($verify_fb_token_url);
@@ -83,6 +85,7 @@ class AuthController extends ApiController
             'last_name' => $userInfo->last_name ?? null,
             'gender' => $userInfo->gender ?? null,
             'fb_id' => $userInfo->id,
+            'device_id' => $device_id,
             'location' => $userInfo->location ?? null,
             'profile_pic' => $filePath ?? null,
             'verified' => 1,

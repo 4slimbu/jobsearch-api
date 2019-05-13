@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Acme\Events\Registration\UserVerifyEvent' => [
             'App\Acme\Listeners\Registration\SendVerificationEmailListener',
         ],
+        'App\Acme\Events\PostCreatedEvent' => [
+            'App\Acme\Listeners\PostCreatedListener',
+        ],
     ];
 
     /**

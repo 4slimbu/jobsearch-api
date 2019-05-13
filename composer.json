@@ -10,7 +10,6 @@
         "ext-json": "^1.6",
         "ext-libxml": "^7.2",
         "ext-soap": "^7.2",
-        "alymosul/laravel-exponent-push-notifications": "^1.7",
         "aws/aws-sdk-php": "^3.64",
         "barryvdh/laravel-cors": "^0.11.0",
         "campaignmonitor/createsend-php": "^6.0",
