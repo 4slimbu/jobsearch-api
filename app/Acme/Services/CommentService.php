@@ -14,10 +14,12 @@ class CommentService extends ApiServices
     public function getComments($input, $user)
     {
         $post_author = Post::find($input['post_id']);
+
+        // We are trying to get main comment, replies are pulled through relationship
         if ($user->id === $post_author->user_id) {
-            $comments = Comment::where('post_id', $input['post_id'])->get();
+            $comments = Comment::where('post_id', $input['post_id'])->where('parent_id', null)->get();
         } else {
-            $comments = Comment::where('post_id', $input['post_id'])
+            $comments = Comment::where('post_id', $input['post_id'])->where('parent_id', null)
                 ->where('user_id', $user->id)->get();
         }
 

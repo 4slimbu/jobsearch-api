@@ -2,11 +2,9 @@
 
 namespace App\Acme\Controllers;
 
-use App\Acme\Requests\CommentShowRequest;
-use App\Acme\Requests\CommentUpdateRequest;
 use App\Acme\Requests\CommentCreateRequest;
 use App\Acme\Requests\CommentGetRequest;
-
+use App\Acme\Requests\CommentUpdateRequest;
 use App\Acme\Services\CommentService;
 
 class CommentController extends ApiController

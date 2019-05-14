@@ -19,6 +19,7 @@ class PostUserResource extends JsonResource
             'first_name' => (string)$this->first_name,
             'last_name' => (string)$this->last_name,
             'full_name' => (string)$this->full_name,
+            'profile_pic' => (string)$this->profile_pic,
         ];
     }
 }

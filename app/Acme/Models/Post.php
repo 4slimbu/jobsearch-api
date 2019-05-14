@@ -45,12 +45,14 @@ class Post extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class, 'post_id');
+        return $this->hasMany(Comment::class, 'post_id')
+            ->where('parent_id', null);
     }
 
     public function myComments()
     {
         return $this->hasMany(Comment::class, 'post_id')
+            ->where('parent_id', null)
             ->where('user_id', auth()->user()->id);
     }
 

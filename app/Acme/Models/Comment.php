@@ -16,12 +16,13 @@ class Comment extends Model
     protected $fillable = [
         'user_id',
         'post_id',
+        'parent_id',
         'comment_body',
     ];
 
     //Each can have multiple children
     public function reply() {
-        return $this->hasOne(Comment::class, 'parent_id');
+        return $this->hasMany(Comment::class, 'parent_id');
     }
 
     public function post()

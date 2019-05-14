@@ -2,7 +2,6 @@
 
 namespace App\Acme\Resources;
 
-use App\Acme\Models\Comment;
 use App\Acme\Resources\Core\CategoryResource;
 use App\Acme\Resources\Core\LocationResource;
 use Illuminate\Http\Resources\Json\JsonResource;
