@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RuntimeConfigTableSeeder::class);
         $this->call(CoreUsersTableSeeder::class);
         $this->call(LogRequestsTableSeeder::class);
+        $this->call(PagesTableSeeder::class);
     }
 }

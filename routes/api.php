@@ -33,6 +33,10 @@ Route::prefix('v1')->namespace('\App\Acme\Controllers')->group(function() {
     Route::get('posts/{postId}', 'PostController@show');
     Route::delete('posts/{postId}', 'PostController@destroy');
 
+    // Pages
+    Route::get('pages', 'PageController@index');
+    Route::get('pages/{pageSlug}', 'PageController@show');
+
     // Comments
     Route::get('comments/{postId}', 'CommentController@index');
     Route::post('comments', 'CommentController@create');
