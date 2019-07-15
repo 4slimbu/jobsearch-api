@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CoreRoleUserTableSeeder::class);
         $this->call(LogAuditTableSeeder::class);
         $this->call(MediaTableSeeder::class);
-        $this->call(MigrationsTableSeeder::class);
         $this->call(PasswordResetsTableSeeder::class);
         $this->call(PostsTableSeeder::class);
         $this->call(RuntimeConfigTableSeeder::class);
