@@ -14,12 +14,12 @@ class CreateCoreCategoriesTable extends Migration {
 	{
 		Schema::create('core_categories', function(Blueprint $table)
 		{
-			$table->integer('id', true);
+			$table->increments('id');
 			$table->integer('parent')->nullable();
 			$table->string('name')->nullable();
 			$table->boolean('sort_order')->nullable();
 			$table->string('icon', 50)->nullable();
-			$table->text('description', 65535)->nullable();
+			$table->text('description')->nullable();
 			$table->boolean('status')->nullable();
 			$table->date('created_at')->nullable();
 			$table->date('updated_at')->nullable();

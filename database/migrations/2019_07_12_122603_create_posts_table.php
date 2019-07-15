@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration {
 			$table->increments('id');
 			$table->integer('user_id');
 			$table->string('post_title')->default('');
-			$table->text('post_body', 65535);
+			$table->text('post_body');
 			$table->integer('location_id');
 			$table->integer('category_id');
 			$table->dateTime('expire_at')->nullable();

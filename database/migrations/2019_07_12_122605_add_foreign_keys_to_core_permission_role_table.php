@@ -14,8 +14,8 @@ class AddForeignKeysToCorePermissionRoleTable extends Migration {
 	{
 		Schema::table('core_permission_role', function(Blueprint $table)
 		{
-			$table->foreign('permission_id')->references('id')->on('core_permissions')->onUpdate('RESTRICT')->onDelete('CASCADE');
-			$table->foreign('role_id')->references('id')->on('core_roles')->onUpdate('RESTRICT')->onDelete('CASCADE');
+//			$table->foreign('permission_id')->references('id')->on('core_permissions')->onUpdate('RESTRICT')->onDelete('CASCADE');
+//			$table->foreign('role_id')->references('id')->on('core_roles')->onUpdate('RESTRICT')->onDelete('CASCADE');
 		});
 	}
 
@@ -29,8 +29,8 @@ class AddForeignKeysToCorePermissionRoleTable extends Migration {
 	{
 		Schema::table('core_permission_role', function(Blueprint $table)
 		{
-			$table->dropForeign('core_permission_role_permission_id_foreign');
-			$table->dropForeign('core_permission_role_role_id_foreign');
+//			$table->dropForeign('core_permission_role_permission_id_foreign');
+//			$table->dropForeign('core_permission_role_role_id_foreign');
 		});
 	}
 

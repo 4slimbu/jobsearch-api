@@ -22,8 +22,8 @@ class RuntimeConfigTableSeeder extends Seeder
                 'id' => 2,
                 'name' => 'super_password',
                 'value' => 'y3Lt8HS174dCeYc',
-                'created_at' => '0000-00-00 00:00:00',
-                'updated_at' => '0000-00-00 00:00:00',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
             ),
         ));
         

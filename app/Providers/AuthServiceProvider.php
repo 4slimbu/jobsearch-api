@@ -49,7 +49,15 @@ class AuthServiceProvider extends ServiceProvider
 
     protected function getPermissions()
     {
-        return Permission::with('roles')->get();
+        // Permission may not be available on fresh install .i.e: before migration
+        // So need to use try/catch
+        try {
+            return Permission::with('roles')->get();
+        } catch (\Exception $e) {
+            //
+        }
+
+        return [];
     }
     
 }

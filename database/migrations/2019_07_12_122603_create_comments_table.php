@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration {
 			$table->integer('user_id')->nullable();
 			$table->integer('parent_id')->nullable();
 			$table->integer('post_id');
-			$table->text('comment_body', 65535);
+			$table->text('comment_body');
 			$table->timestamps();
 		});
 	}
