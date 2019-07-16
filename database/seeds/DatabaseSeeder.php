@@ -11,7 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CommentsTableSeeder::class);
         $this->call(CoreCategoriesTableSeeder::class);
         $this->call(CoreLocationsTableSeeder::class);
         $this->call(CoreLocationTypesTableSeeder::class);
@@ -20,12 +19,13 @@ class DatabaseSeeder extends Seeder
         $this->call(CoreRolesTableSeeder::class);
         $this->call(CoreRoleUserTableSeeder::class);
         $this->call(LogAuditTableSeeder::class);
-        $this->call(MediaTableSeeder::class);
         $this->call(PasswordResetsTableSeeder::class);
-        $this->call(PostsTableSeeder::class);
         $this->call(RuntimeConfigTableSeeder::class);
-        $this->call(CoreUsersTableSeeder::class);
         $this->call(LogRequestsTableSeeder::class);
+        $this->call(CoreUsersTableSeeder::class);
         $this->call(PagesTableSeeder::class);
+        $this->call(PostsTableSeeder::class);
+        $this->call(MediaTableSeeder::class);
+        $this->call(CommentsTableSeeder::class);
     }
 }

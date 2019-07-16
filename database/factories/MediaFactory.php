@@ -1,9 +1,13 @@
 <?php
 
+use App\Acme\Models\Category;
+use App\Acme\Models\Media;
+use App\Acme\Models\Post;
 use App\Acme\Models\User;
+use Carbon\Carbon;
 use Faker\Generator as Faker;
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(Media::class, function (Faker $faker) {
     // Images already uploaded to aws bucket
     $awsImages = [
         "https://s3-ap-southeast-2.amazonaws.com/loksewa/loksewa/1/23/3b9zvtfLY4NPlAAocGVkcANWi7qOyDzW9pl2g1LC.jpeg",
@@ -76,15 +80,14 @@ $factory->define(User::class, function (Faker $faker) {
         "https://s3-ap-southeast-2.amazonaws.com/loksewa/loksewa/28/72/p909g7sy4ScACFngh9nKG48xmphvY2sxCppLrr0C.jpeg"
     ];
 
+    $post = Post::all()->random();
+    $hasPrimary = Media::where('post_id', $post->id)->where('is_primary', 1)->first();
     return [
-        'first_name' => $faker->firstName(),
-        'last_name' => $faker->lastName(),
-        'email' => $faker->unique()->safeEmail,
-        'password' => bcrypt('password'),
-        'gender' => $faker->randomElement(['male', 'female']),
-        'contact_number' => $faker->phoneNumber,
-        'verified' => $faker->boolean(95),
-        'is_active' => $faker->boolean(95),
-        'profile_pic' => $faker->randomElement($awsImages)
+        'is_primary' => ! $hasPrimary,
+        'post_id' => $post->id,
+        'user_id' => $post->user->id,
+        'url' => $faker->randomElement($awsImages),
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now(),
     ];
 });

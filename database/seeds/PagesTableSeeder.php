@@ -19,7 +19,7 @@ class PagesTableSeeder extends Seeder
         \DB::table('pages')->insert([
             [
                 'title' => 'About Us',
-                'slug' => 'about-us',
+                'slug' => 'AboutUs',
                 'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacinia, nunc at
                  pellentesque hendrerit, diam nibh porta augue, ut faucibus libero lorem a orci. Nullam fringilla tempus 
                  nisl ut ultricies. Integer non orci lobortis, commodo mi vel, fringilla risus. Aliquam ornare vestibulum 
@@ -30,7 +30,7 @@ class PagesTableSeeder extends Seeder
             ],
             [
                 'title' => 'Contact Us',
-                'slug' => 'contact-us',
+                'slug' => 'ContactUs',
                 'content' => ' Suspendisse lacinia, nunc at
                  pellentesque hendrerit, diam nibh porta augue, ut faucibus libero lorem a orci. Nullam fringilla tempus 
                  nisl ut ultricies. Integer non orci lobortis, commodo mi vel, fringilla risus. Aliquam ornare vestibulum 
@@ -41,7 +41,7 @@ class PagesTableSeeder extends Seeder
             ],
             [
                 'title' => 'Privacy',
-                'slug' => 'privacy',
+                'slug' => 'Privacy',
                 'content' => ' Hendrerit, diam nibh porta augue, ut faucibus libero lorem a orci. Nullam fringilla tempus 
                  nisl ut ultricies. Integer non orci lobortis, commodo mi vel, fringilla risus. Aliquam ornare vestibulum 
                  magna, a vehicula augue consectetur at. Nulla facilisi. Proin aliquet lorem quis pellentesque laoreet. 
@@ -51,7 +51,7 @@ class PagesTableSeeder extends Seeder
             ],
             [
                 'title' => 'Terms And Conditions',
-                'slug' => 'terms-and-conditions',
+                'slug' => 'TermsAndConditions',
                 'content' => ' Aut faucibus libero lorem a orci. Nullam fringilla tempus 
                  nisl ut ultricies. Integer non orci lobortis, commodo mi vel, fringilla risus. Aliquam ornare vestibulum 
                  magna, a vehicula augue consectetur at. Nulla facilisi. Proin aliquet lorem quis pellentesque laoreet. 
@@ -61,7 +61,7 @@ class PagesTableSeeder extends Seeder
             ],
             [
                 'title' => 'Security Tips',
-                'slug' => 'security-tips',
+                'slug' => 'SecurityTips',
                 'content' => 'Faucibus libero lorem a orci. Nullam fringilla tempus 
                  nisl ut ultricies. Integer non orci lobortis, commodo mi vel, fringilla risus. Aliquam ornare vestibulum 
                  magna, a vehicula augue consectetur at. Nulla facilisi. Proin aliquet lorem quis pellentesque laoreet. 

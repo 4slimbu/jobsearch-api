@@ -21,8 +21,7 @@ class CreateCoreCategoriesTable extends Migration {
 			$table->string('icon', 50)->nullable();
 			$table->text('description')->nullable();
 			$table->boolean('status')->nullable();
-			$table->date('created_at')->nullable();
-			$table->date('updated_at')->nullable();
+            $table->timestamps();
 		});
 	}
 

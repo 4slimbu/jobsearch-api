@@ -30,9 +30,9 @@ class CreateCoreUsersTable extends Migration {
 			$table->string('profile_pic')->nullable();
 			$table->bigInteger('fb_id')->nullable();
 			$table->string('device_id')->nullable();
-			$table->timestamps();
-			$table->softDeletes();
-			$table->dateTime('last_login_date')->nullable();
+            $table->dateTime('last_login_date')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
 		});
 	}
 
