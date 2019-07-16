@@ -22,6 +22,7 @@ class PostResource extends JsonResource
             'title' => (string)$this->post_title,
             'body' => (string)$this->post_body,
             'created_at' => (string)$this->created_at,
+            'updated_at' => (string)$this->updated_at,
             'expire_at'=> (string)$this->expire_at,
             'author' => new PostUserResource($this->user),
             'category' => new CategoryResource($this->whenLoaded('category')),
