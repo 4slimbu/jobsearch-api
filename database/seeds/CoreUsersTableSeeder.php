@@ -54,15 +54,25 @@ class CoreUsersTableSeeder extends Seeder
             }
         });
 
-        // Save posts for each user
+        // Add post for default users also
+        // Add 0-5 posts for each user
+        for ($i = 0; $i < $faker->randomElement([0, 1, 2, 3, 4, 5]) ; $i++) {
+            $user1 = User::where('id', 1)->first();
+            $user1->posts()->save(factory(Post::class)->make());
+
+            $user2 = User::where('id', 2)->first();
+            $user2->posts()->save(factory(Post::class)->make());
+        }
+
+        // Save preferences for each user
         $users = User::select('id')->get();
         $postIds = Post::select('id')->pluck('id');
 
         foreach ($users as $user) {
-            // Save post to 90% of users
+            // Save preferences to 90% of users
             if ($faker->boolean(90)) {
 
-                // Save 0-5 posts for each user
+                // Save 0-5 preferences for each user
                 for ($i = 0; $i < $faker->randomElement([0, 1, 2, 3, 4, 5]) ; $i++) {
                     $user->preferences = [
                         "savedPosts" => $faker->randomElements($postIds, $faker->randomElement([1,2,3,4,5])),
@@ -77,13 +87,12 @@ class CoreUsersTableSeeder extends Seeder
         // Add comments to posts
         $posts = Post::select('id')->get();
         foreach ($posts as $post) {
-            // Add comments to 90% of posts
-            if ($faker->boolean(90)) {
 
-                // Add 0-5 comments for each post
-                for ($i = 0; $i < $faker->randomElement([0, 1, 2, 3, 4, 5]) ; $i++) {
-                    $post->comments()->save(factory(Comment::class)->make());
-                }
+            // Add 0-5 comments for each post
+            for ($i = 0; $i < $faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) ; $i++) {
+                $post->comments()->save(factory(Comment::class)->make([
+                    'user_id' => User::all()->random()->id
+                ]));
             }
         }
 

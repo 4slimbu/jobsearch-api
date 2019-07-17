@@ -5,12 +5,14 @@ namespace App\Acme\Listeners;
 use App\Acme\Emails\VerificationEmail;
 use App\Acme\Events\PostCreatedEvent;
 use App\Acme\Models\User;
+use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
 
-class PostCreatedListener
+class PostCreatedListener implements ShouldQueue
 {
+    use InteractsWithQueue, Queueable;
     /**
      * Create the event listener.
      *

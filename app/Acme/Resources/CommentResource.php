@@ -20,6 +20,8 @@ class CommentResource extends JsonResource
         $comment = [
             'id' => (integer)$this->id,
             'user_id' => (integer)$this->user_id,
+            'full_name' => (string)$this->user->full_name,
+            'profile_pic' => (string)$this->user->profile_pic,
             'post_id' => (integer)$this->post_id,
             'post_name' => $this->post->post_title,
             'parent_id' => (integer)$this->parent_id,

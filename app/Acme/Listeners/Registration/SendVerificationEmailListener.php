@@ -4,12 +4,14 @@ namespace App\Acme\Listeners\Registration;
 
 use App\Acme\Emails\VerificationEmail;
 use App\Acme\Events\Registration\UserVerifyEvent;
-use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 use Mail;
 
-class SendVerificationEmailListener
+class SendVerificationEmailListener implements ShouldQueue
 {
+    use InteractsWithQueue, Queueable;
     /**
      * Create the event listener.
      *

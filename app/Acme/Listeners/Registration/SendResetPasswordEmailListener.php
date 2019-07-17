@@ -4,12 +4,14 @@ namespace App\Acme\Listeners\Registration;
 
 use App\Acme\Emails\ResetPasswordEmail;
 use App\Acme\Events\Registration\UserForgotPasswordEvent;
-use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 use Mail;
 
-class SendResetPasswordEmailListener
+class SendResetPasswordEmailListener implements ShouldQueue
 {
+    use InteractsWithQueue, Queueable;
     /**
      * Create the event listener.
      *

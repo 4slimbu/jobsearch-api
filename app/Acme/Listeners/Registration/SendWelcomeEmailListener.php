@@ -4,12 +4,14 @@ namespace App\Acme\Listeners\Registration;
 
 use App\Acme\Emails\WelcomeEmail;
 use App\Acme\Events\Registration\UserRegisteredEvent;
+use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
 
-class SendWelcomeEmailListener
+class SendWelcomeEmailListener implements ShouldQueue
 {
+    use InteractsWithQueue, Queueable;
     /**
      * Create the event listener.
      *
