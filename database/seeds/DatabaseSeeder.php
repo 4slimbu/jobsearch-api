@@ -22,10 +22,11 @@ class DatabaseSeeder extends Seeder
         $this->call(PasswordResetsTableSeeder::class);
         $this->call(RuntimeConfigTableSeeder::class);
         $this->call(LogRequestsTableSeeder::class);
-        $this->call(CoreUsersTableSeeder::class);
         $this->call(PagesTableSeeder::class);
-        $this->call(PostsTableSeeder::class);
+        $this->call(CoreUsersTableSeeder::class);
+// Post and Comments are seeded on CoreUsersTableSeeder class
+//        $this->call(PostsTableSeeder::class);
+//        $this->call(CommentsTableSeeder::class);
         $this->call(MediaTableSeeder::class);
-        $this->call(CommentsTableSeeder::class);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Acme\Models\Comment;
+use App\Acme\Models\Post;
 use App\Acme\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -41,11 +43,49 @@ class CoreUsersTableSeeder extends Seeder
         ));
 
         // Add extra random users
-        factory(User::class, 50)->create();
+        factory(User::class, 100)->create()->each(function($u) use ($faker) {
+            // Add post to 90% of users
+            if ($faker->boolean(90)) {
 
-//        factory(App\User::class, 50)->create()->each(function($u) {
-//            $u->posts()->save(factory(App\Post::class)->make());
-//        });
+                // Add 0-5 posts for each user
+                for ($i = 0; $i < $faker->randomElement([0, 1, 2, 3, 4, 5]) ; $i++) {
+                    $u->posts()->save(factory(Post::class)->make());
+                }
+            }
+        });
+
+        // Save posts for each user
+        $users = User::select('id')->get();
+        $postIds = Post::select('id')->pluck('id');
+
+        foreach ($users as $user) {
+            // Save post to 90% of users
+            if ($faker->boolean(90)) {
+
+                // Save 0-5 posts for each user
+                for ($i = 0; $i < $faker->randomElement([0, 1, 2, 3, 4, 5]) ; $i++) {
+                    $user->preferences = [
+                        "savedPosts" => $faker->randomElements($postIds, $faker->randomElement([1,2,3,4,5])),
+                        "subscribedCategories" => $faker->randomElements($postIds, $faker->randomElement([1,2,3]))
+                    ];
+
+                    $user->save();
+                }
+            }
+        }
+
+        // Add comments to posts
+        $posts = Post::select('id')->get();
+        foreach ($posts as $post) {
+            // Add comments to 90% of posts
+            if ($faker->boolean(90)) {
+
+                // Add 0-5 comments for each post
+                for ($i = 0; $i < $faker->randomElement([0, 1, 2, 3, 4, 5]) ; $i++) {
+                    $post->comments()->save(factory(Comment::class)->make());
+                }
+            }
+        }
 
     }
 }
