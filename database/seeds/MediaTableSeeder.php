@@ -14,15 +14,12 @@ class MediaTableSeeder extends Seeder
      */
     public function run()
     {
-
-
         $faker = Faker\Factory::create();
 
         DB::table('media')->truncate();
 
         // Add extra random users
-        factory(Media::class, 50)->create();
-        
-        
+        factory(Media::class, 500)->create();
+
     }
 }

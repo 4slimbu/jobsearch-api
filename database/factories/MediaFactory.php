@@ -81,9 +81,8 @@ $factory->define(Media::class, function (Faker $faker) {
     ];
 
     $post = Post::all()->random();
-    $hasPrimary = Media::where('post_id', $post->id)->where('is_primary', 1)->first();
     return [
-        'is_primary' => ! $hasPrimary,
+        'is_primary' => $faker->boolean(20),
         'post_id' => $post->id,
         'user_id' => $post->user->id,
         'url' => $faker->randomElement($awsImages),
