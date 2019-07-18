@@ -28,8 +28,8 @@ class UserRegistrationRequest extends ApiRequest
             'password' => 'required|string|min:8|max:20',
             'gender' => 'required|string',
             'contact_number' => 'required|string',
-            'device_id' => 'string',
-            'preferences' => 'array',
+            'device_id' => 'string|nullable',
+            'preferences' => 'array|nullable',
         ];
     }
 }
