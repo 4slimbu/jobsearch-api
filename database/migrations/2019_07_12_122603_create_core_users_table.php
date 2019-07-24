@@ -28,6 +28,9 @@ class CreateCoreUsersTable extends Migration {
 			$table->string('remember_token', 100)->nullable();
 			$table->boolean('is_active')->default(1);
 			$table->string('profile_pic')->nullable();
+			$table->string('address')->nullable();
+			$table->string('latitude')->nullable();
+			$table->string('longitude')->nullable();
 			$table->bigInteger('fb_id')->nullable();
 			$table->string('device_id')->nullable();
             $table->dateTime('last_login_date')->nullable();

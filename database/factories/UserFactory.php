@@ -23,6 +23,9 @@ $factory->define(User::class, function (Faker $faker) {
         'contact_number' => $faker->phoneNumber,
         'verified' => $faker->boolean(95),
         'is_active' => $faker->boolean(95),
-        'profile_pic' => $faker->randomElement($awsImages)
+        'profile_pic' => $faker->randomElement($awsImages),
+        'address' => $faker->address,
+        'latitude' => $faker->latitude(32, 35),
+        'longitude' => $faker->longitude(150, 153)
     ];
 });

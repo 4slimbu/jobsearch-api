@@ -24,7 +24,9 @@ class PostCreateRequest extends ApiRequest
         return [
             'post_title' => 'string|required',
             'post_body' => 'string|required',
-            'location_id' => 'integer|required',
+            'address' => 'string|required',
+            'latitude' => 'numeric|required',
+            'longitude' => 'numeric|required',
             'category_id' => 'integer|required',
             'post_images' => 'array|nullable',
             'post_images.*' => 'file|nullable',

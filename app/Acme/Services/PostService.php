@@ -8,6 +8,7 @@ use App\Acme\Models\Post;
 use App\Acme\Resources\PostResource;
 use App\Acme\Traits\ApiResponseTrait;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class PostService extends ApiServices
@@ -16,8 +17,20 @@ class PostService extends ApiServices
 
     public function getPosts($input, $user)
     {
-        $posts = Post::orderBy('created_at', 'DESC');
+        $latitude = (float) $user->latitude;
+        $longitude = (float) $user->longitude;
 
+        $posts = Post::select('*', DB::raw("
+                    (
+                          6371 * acos (
+                          cos ( radians(" . $latitude . ") )
+                          * cos( radians( latitude ) )
+                          * cos( radians( longitude ) - radians(" . $longitude . ") )
+                          + sin ( radians(" . $latitude . ") )
+                          * sin( radians( latitude ) )
+                        )
+                    ) AS distance
+                "));
         if (isset($input['category'])) {
           $posts = $posts->where('category_id', $input['category']);
         };
@@ -34,6 +47,8 @@ class PostService extends ApiServices
         if (isset($input['type']) && $input['type'] === 'saved') {
             $posts = $posts->whereIn('id', auth()->user()->preferences['savedPosts']);
         }
+
+        $posts = $posts->orderBy('distance', 'ASC');
 
         $posts = $posts->paginate($input['limit'] ?? 10);
 
@@ -110,7 +125,21 @@ class PostService extends ApiServices
 
     public function getPost($input, $user)
     {
-        $post = Post::where('id', $input['id'])->firstOrFail();
+        $latitude = (float) $user->latitude;
+        $longitude = (float) $user->longitude;
+
+        $post = Post::select('*', DB::raw("
+                    (
+                          6371 * acos (
+                          cos ( radians(" . $latitude . ") )
+                          * cos( radians( latitude ) )
+                          * cos( radians( longitude ) - radians(" . $longitude . ") )
+                          + sin ( radians(" . $latitude . ") )
+                          * sin( radians( latitude ) )
+                        )
+                    ) AS distance
+                "))
+            ->where('id', $input['id'])->firstOrFail();
         return new PostResource($post);
     }
 

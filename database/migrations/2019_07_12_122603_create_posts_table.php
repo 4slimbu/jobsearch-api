@@ -17,11 +17,13 @@ class CreatePostsTable extends Migration {
 			$table->increments('id');
 			$table->integer('user_id');
 			$table->string('post_title')->default('');
-			$table->text('post_body');
-			$table->integer('location_id');
-			$table->integer('category_id');
-			$table->dateTime('expire_at')->nullable();
-			$table->timestamps();
+            $table->text('post_body');
+            $table->string('address')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->integer('category_id');
+            $table->dateTime('expire_at')->nullable();
+            $table->timestamps();
 		});
 	}
 

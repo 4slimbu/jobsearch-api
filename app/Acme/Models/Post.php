@@ -19,23 +19,20 @@ class Post extends Model
         'user_id',
         'post_title',
         'post_body',
-        'location_id',
+        'address',
+        'latitude',
+        'longitude',
         'category_id',
         'expire_at'
     ];
 
     protected $with = [
-        'media', 'location', 'category', 'comments'
+        'media', 'category', 'comments'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function location()
-    {
-        return $this->belongsTo(Location::class, 'location_id');
     }
 
     public function category()

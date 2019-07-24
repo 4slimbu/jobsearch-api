@@ -24,7 +24,9 @@ class PostUpdateRequest extends ApiRequest
         return [
             'post_title' => 'string',
             'post_body' => 'string',
-            'location_id' => 'integer',
+            'address' => 'string|required',
+            'latitude' => 'numeric|required',
+            'longitude' => 'numeric|required',
             'category_id' => 'integer',
             'post_images' => 'array',
             'selected_image' => 'integer|nullable',

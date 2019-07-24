@@ -30,6 +30,9 @@ class UserRegistrationRequest extends ApiRequest
             'contact_number' => 'required|string',
             'device_id' => 'string|nullable',
             'preferences' => 'array|nullable',
+            'address' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
         ];
     }
 }

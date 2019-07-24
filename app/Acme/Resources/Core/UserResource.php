@@ -25,6 +25,9 @@ class UserResource extends JsonResource
             'verified' => (bool)$this->verified,
             'preferences' => (object)$this->preferences,
             'profile_pic' => (string)$this->profile_pic,
+            'address' => (string)$this->address,
+            'latitude' => (string)$this->latitude,
+            'longitude' => (string)$this->longitude,
             'roles' => RoleResource::collection($this->whenLoaded('roles')),
         ];
     }

@@ -29,6 +29,9 @@ class CoreUsersTableSeeder extends Seeder
                 'contact_number' => '9983839928',
                 'verified' => 1,
                 'is_active' => 1,
+                'address' => $faker->address,
+                'latitude' => $faker->latitude(32, 35),
+                'longitude' => $faker->longitude(150, 153)
             ],
             [
                 'first_name' => 'Sudip',
@@ -39,6 +42,9 @@ class CoreUsersTableSeeder extends Seeder
                 'contact_number' => '9938392883',
                 'verified' => 1,
                 'is_active' => 1,
+                'address' => $faker->address,
+                'latitude' => $faker->latitude(32, 35),
+                'longitude' => $faker->longitude(150, 153)
             ]
         ));
 
