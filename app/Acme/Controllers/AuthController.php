@@ -86,7 +86,9 @@ class AuthController extends ApiController
             'gender' => $userInfo->gender ?? null,
             'fb_id' => $userInfo->id,
             'device_id' => $device_id,
-            'location' => $userInfo->location ?? null,
+            'address' => "",
+            'latitude' => "",
+            'longitude' => "",
             'profile_pic' => $filePath ?? null,
             'verified' => 1,
             'password' => bcrypt(md5(mt_rand(100000, 999999)))

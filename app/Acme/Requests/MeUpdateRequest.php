@@ -28,6 +28,9 @@ class MeUpdateRequest extends ApiRequest
             'contact_number' => 'string',
             'preferences' => 'array',
             'profile_pic' => 'file|nullable',
+            'address' => 'string',
+            'latitude' => 'numeric',
+            'longitude' => 'numeric'
         ];
     }
 }
