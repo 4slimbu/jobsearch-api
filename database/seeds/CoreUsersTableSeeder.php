@@ -61,8 +61,8 @@ class CoreUsersTableSeeder extends Seeder
         });
 
         // Add post for default users also
-        // Add 0-5 posts for each user
-        for ($i = 0; $i < $faker->randomElement([0, 1, 2, 3, 4, 5]) ; $i++) {
+        // Add 50 posts for each user
+        for ($i = 0; $i < 50 ; $i++) {
             $user1 = User::where('id', 1)->first();
             $user1->posts()->save(factory(Post::class)->make());
 
