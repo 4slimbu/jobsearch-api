@@ -20,38 +20,56 @@ class PostService extends ApiServices
         $latitude = (float) $user->latitude;
         $longitude = (float) $user->longitude;
 
-        $posts = Post::select('*', DB::raw("
-                    (
-                          6371 * acos (
-                          cos ( radians(" . $latitude . ") )
-                          * cos( radians( latitude ) )
-                          * cos( radians( longitude ) - radians(" . $longitude . ") )
-                          + sin ( radians(" . $latitude . ") )
-                          * sin( radians( latitude ) )
-                        )
-                    ) AS distance
-                "));
+        $distance = "(
+              6371 * acos (
+              cos ( radians(" . $latitude . ") )
+              * cos( radians( latitude ) )
+              * cos( radians( longitude ) - radians(" . $longitude . ") )
+              + sin ( radians(" . $latitude . ") )
+              * sin( radians( latitude ) )
+            )
+        )";
+
+        $posts = Post::select('*', DB::raw($distance . " AS distance"));
+
+        // Filter by category
         if (isset($input['category'])) {
-          $posts = $posts->where('category_id', $input['category']);
+            $categoryIds = explode(',',$input['category']);
+
+            $posts = $posts->whereIn('category_id', $categoryIds);
         };
 
+        // Filter by search text
         if (isset($input['search'])) {
             $posts = $posts->where('post_title', 'LIKE', "%{$input['search']}%")
                     ->orWhere('post_body', 'LIKE', "%{$input['search']}%");
         }
 
+        // Filter user posts
         if (isset($input['type']) && $input['type'] === 'my') {
             $posts = $posts->where('user_id', auth()->user()->id);
         }
 
+        // Filter saved posts
         if (isset($input['type']) && $input['type'] === 'saved') {
             $posts = $posts->whereIn('id', auth()->user()->preferences['savedPosts']);
         }
 
-        $posts = $posts->orderBy('distance', 'ASC');
+        // Filter by distance
+        if (isset($input['radius'])) {
+            $posts = $posts->where(DB::raw($distance), '<',  $input['radius']);
+        }
 
+        // By default, posts are order by nearest distance
+        $posts = $posts->orderBy('distance', 'ASC');
+        if (isset($input['orderBy']) && $input['orderBy'] === 'latest') {
+            $posts = $posts->orderBy('created_at', 'DESC');
+        }
+
+        // Paginate
         $posts = $posts->paginate($input['limit'] ?? 10);
 
+        // Return response
         return PostResource::collection($posts);
     }
 
@@ -128,17 +146,17 @@ class PostService extends ApiServices
         $latitude = (float) $user->latitude;
         $longitude = (float) $user->longitude;
 
-        $post = Post::select('*', DB::raw("
-                    (
-                          6371 * acos (
-                          cos ( radians(" . $latitude . ") )
-                          * cos( radians( latitude ) )
-                          * cos( radians( longitude ) - radians(" . $longitude . ") )
-                          + sin ( radians(" . $latitude . ") )
-                          * sin( radians( latitude ) )
-                        )
-                    ) AS distance
-                "))
+        $distance = "(
+              6371 * acos (
+              cos ( radians(" . $latitude . ") )
+              * cos( radians( latitude ) )
+              * cos( radians( longitude ) - radians(" . $longitude . ") )
+              + sin ( radians(" . $latitude . ") )
+              * sin( radians( latitude ) )
+            )
+        )";
+
+        $post = Post::select('*', DB::raw($distance . " AS distance"))
             ->where('id', $input['id'])->firstOrFail();
         return new PostResource($post);
     }
