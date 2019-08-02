@@ -31,7 +31,6 @@ class PostUpdateRequest extends ApiRequest
             'post_images' => 'array',
             'selected_image' => 'integer|nullable',
             'images_to_remove' => 'array|nullable',
-            'expire_at' => 'string|nullable'
         ];
     }
 }

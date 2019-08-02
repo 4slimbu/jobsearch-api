@@ -41,8 +41,10 @@ class PostService extends ApiServices
 
         // Filter by search text
         if (isset($input['search'])) {
-            $posts = $posts->where('post_title', 'LIKE', "%{$input['search']}%")
+            $posts = $posts->where(function($q) use ($input) {
+                $q->where('post_title', 'LIKE', "%{$input['search']}%")
                     ->orWhere('post_body', 'LIKE', "%{$input['search']}%");
+            });
         }
 
         // Filter user posts
@@ -60,10 +62,11 @@ class PostService extends ApiServices
             $posts = $posts->where(DB::raw($distance), '<',  $input['radius']);
         }
 
-        // By default, posts are order by nearest distance
-        $posts = $posts->orderBy('distance', 'ASC');
         if (isset($input['orderBy']) && $input['orderBy'] === 'latest') {
             $posts = $posts->orderBy('created_at', 'DESC');
+        } else {
+            // By default, posts are order by nearest distance
+            $posts = $posts->orderBy('distance', 'ASC');
         }
 
         // Paginate

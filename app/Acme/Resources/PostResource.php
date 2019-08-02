@@ -27,7 +27,6 @@ class PostResource extends JsonResource
             'distance' => (string) $this->distance,
             'created_at' => (string)$this->created_at,
             'updated_at' => (string)$this->updated_at,
-            'expire_at'=> (string)$this->expire_at,
             'author' => new PostUserResource($this->user),
             'category' => new CategoryResource($this->whenLoaded('category')),
             'postImages' => MediaResource::collection($this->whenLoaded('media')),

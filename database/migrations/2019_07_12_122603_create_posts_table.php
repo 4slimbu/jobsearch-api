@@ -22,7 +22,7 @@ class CreatePostsTable extends Migration {
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->integer('category_id');
-            $table->dateTime('expire_at')->nullable();
+//            $table->dateTime('expire_at')->nullable();
             $table->timestamps();
 		});
 	}
