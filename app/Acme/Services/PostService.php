@@ -45,6 +45,8 @@ class PostService extends ApiServices
                 $q->where('post_title', 'LIKE', "%{$input['search']}%")
                     ->orWhere('post_body', 'LIKE', "%{$input['search']}%");
             });
+
+            SearchLogService::log($input['search'], auth()->user()->id);
         }
 
         // Filter user posts
