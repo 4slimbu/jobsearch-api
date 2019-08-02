@@ -25,6 +25,7 @@ class PostResource extends JsonResource
             'latitude' => (string) $this->latitude,
             'longitude' => (string) $this->longitude,
             'distance' => (string) $this->distance,
+            'is_featured' => (bool) $this->is_featured,
             'created_at' => (string)$this->created_at,
             'updated_at' => (string)$this->updated_at,
             'author' => new PostUserResource($this->user),

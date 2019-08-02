@@ -23,7 +23,7 @@ class Post extends Model
         'latitude',
         'longitude',
         'category_id',
-        'expire_at'
+        'is_featured'
     ];
 
     protected $with = [

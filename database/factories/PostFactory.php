@@ -14,6 +14,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'latitude' => $faker->latitude(32, 35),
         'longitude' => $faker->longitude(150, 153),
         'category_id' => Category::all()->random()->id,
+        'is_featured' => $faker->boolean(10),
 //        'expire_at' => Carbon::now()->addDays($faker->randomElement([10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60])),
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now(),
