@@ -18,7 +18,7 @@ class PageResource extends JsonResource
             'id' => (integer)$this->id,
             'title' => (string)$this->title,
             'slug' => (string)$this->slug,
-            'content' => (string)$this->content,
+            'url' => (string)$this->url,
         ];
 
         return $page;

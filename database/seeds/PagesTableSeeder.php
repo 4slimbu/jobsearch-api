@@ -20,54 +20,22 @@ class PagesTableSeeder extends Seeder
             [
                 'title' => 'About Us',
                 'slug' => 'AboutUs',
-                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacinia, nunc at
-                 pellentesque hendrerit, diam nibh porta augue, ut faucibus libero lorem a orci. Nullam fringilla tempus 
-                 nisl ut ultricies. Integer non orci lobortis, commodo mi vel, fringilla risus. Aliquam ornare vestibulum 
-                 magna, a vehicula augue consectetur at. Nulla facilisi. Proin aliquet lorem quis pellentesque laoreet. 
-                 Duis nec ex vitae lacus bibendum iaculis eget mollis urna. Vestibulum vel mauris non eros auctor iaculis. 
-                 In dictum auctor lorem, ut suscipit arcu lacinia a. Suspendisse potenti. Vestibulum gravida orci eget 
-                 libero condimentum pellentesque.'
-            ],
-            [
-                'title' => 'Contact Us',
-                'slug' => 'ContactUs',
-                'content' => ' Suspendisse lacinia, nunc at
-                 pellentesque hendrerit, diam nibh porta augue, ut faucibus libero lorem a orci. Nullam fringilla tempus 
-                 nisl ut ultricies. Integer non orci lobortis, commodo mi vel, fringilla risus. Aliquam ornare vestibulum 
-                 magna, a vehicula augue consectetur at. Nulla facilisi. Proin aliquet lorem quis pellentesque laoreet. 
-                 Duis nec ex vitae lacus bibendum iaculis eget mollis urna. Vestibulum vel mauris non eros auctor iaculis. 
-                 In dictum auctor lorem, ut suscipit arcu lacinia a. Suspendisse potenti. Vestibulum gravida orci eget 
-                 libero condimentum pellentesque.'
+                'url' => 'https://expo.io/about'
             ],
             [
                 'title' => 'Privacy',
                 'slug' => 'Privacy',
-                'content' => ' Hendrerit, diam nibh porta augue, ut faucibus libero lorem a orci. Nullam fringilla tempus 
-                 nisl ut ultricies. Integer non orci lobortis, commodo mi vel, fringilla risus. Aliquam ornare vestibulum 
-                 magna, a vehicula augue consectetur at. Nulla facilisi. Proin aliquet lorem quis pellentesque laoreet. 
-                 Duis nec ex vitae lacus bibendum iaculis eget mollis urna. Vestibulum vel mauris non eros auctor iaculis. 
-                 In dictum auctor lorem, ut suscipit arcu lacinia a. Suspendisse potenti. Vestibulum gravida orci eget 
-                 libero condimentum pellentesque.'
+                'url' => 'https://expo.io/privacy'
             ],
             [
                 'title' => 'Terms And Conditions',
                 'slug' => 'TermsAndConditions',
-                'content' => ' Aut faucibus libero lorem a orci. Nullam fringilla tempus 
-                 nisl ut ultricies. Integer non orci lobortis, commodo mi vel, fringilla risus. Aliquam ornare vestibulum 
-                 magna, a vehicula augue consectetur at. Nulla facilisi. Proin aliquet lorem quis pellentesque laoreet. 
-                 Duis nec ex vitae lacus bibendum iaculis eget mollis urna. Vestibulum vel mauris non eros auctor iaculis. 
-                 In dictum auctor lorem, ut suscipit arcu lacinia a. Suspendisse potenti. Vestibulum gravida orci eget 
-                 libero condimentum pellentesque.'
+                'url' => 'https://expo.io/terms'
             ],
             [
                 'title' => 'Security Tips',
                 'slug' => 'SecurityTips',
-                'content' => 'Faucibus libero lorem a orci. Nullam fringilla tempus 
-                 nisl ut ultricies. Integer non orci lobortis, commodo mi vel, fringilla risus. Aliquam ornare vestibulum 
-                 magna, a vehicula augue consectetur at. Nulla facilisi. Proin aliquet lorem quis pellentesque laoreet. 
-                 Duis nec ex vitae lacus bibendum iaculis eget mollis urna. Vestibulum vel mauris non eros auctor iaculis. 
-                 In dictum auctor lorem, ut suscipit arcu lacinia a. Suspendisse potenti. Vestibulum gravida orci eget 
-                 libero condimentum pellentesque.'
+                'url' => 'https://expo.io/guidelines'
             ],
         ]);
         
