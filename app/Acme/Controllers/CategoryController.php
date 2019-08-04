@@ -9,7 +9,6 @@ class CategoryController extends ApiController
     private $categoryService;
     public function __construct(CategoryService $categoryService)
     {
-        $this->middleware('auth:api');
         $this->categoryService = $categoryService;
     }
 
