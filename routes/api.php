@@ -32,6 +32,7 @@ Route::prefix('v1')->namespace('\App\Acme\Controllers')->group(function() {
     Route::post('posts/{postId}', 'PostController@update');
     Route::get('posts/{postId}', 'PostController@show');
     Route::delete('posts/{postId}', 'PostController@destroy');
+    Route::get('public/posts', 'PublicPostController@index');
 
     // Pages
     Route::get('pages', 'PageController@index');
