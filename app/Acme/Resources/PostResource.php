@@ -33,7 +33,7 @@ class PostResource extends JsonResource
             'postImages' => MediaResource::collection($this->whenLoaded('media')),
         ];
 
-        if ($this->user_id === auth()->user()->id) {
+        if ($this->user_id && $this->user_id === auth()->user()->id) {
             $post['postComments'] = CommentResource::collection($this->comments);
         } else {
             $post['postComments'] = CommentResource::collection(($this->myComments));
