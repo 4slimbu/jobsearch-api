@@ -78,6 +78,12 @@ class PostService extends ApiServices
         return PostResource::collection($posts);
     }
 
+    public function getPublicPosts($input)
+    {
+        $posts = Post::orderBy('created_at', 'desc')->limit(50)->get();
+        return PostResource::collection($posts);
+    }
+
     public function createPost($input, $user)
     {
         $input['user_id'] = $user->id;

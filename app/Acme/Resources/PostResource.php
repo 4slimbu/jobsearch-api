@@ -33,11 +33,12 @@ class PostResource extends JsonResource
             'category' => new CategoryResource($this->whenLoaded('category')),
             'postImages' => MediaResource::collection($this->whenLoaded('media')),
         ];
-
-        if ($this->user_id === auth()->user()->id) {
-            $post['postComments'] = CommentResource::collection($this->comments);
-        } else {
-            $post['postComments'] = CommentResource::collection(($this->myComments));
+        if (auth()->user()) {
+            if ($this->user_id === auth()->user()->id) {
+                $post['postComments'] = CommentResource::collection($this->comments);
+            } else {
+                $post['postComments'] = CommentResource::collection(($this->myComments));
+            }
         }
         return $post;
     }
