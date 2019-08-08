@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration {
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->unsignedInteger('category_id');
+            $table->unsignedInteger('flag_count')->default(0);
             $table->boolean('is_featured')->default(0);
             $table->timestamps();
 		});

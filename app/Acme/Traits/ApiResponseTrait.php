@@ -77,6 +77,21 @@ trait ApiResponseTrait
     }
 
     /**
+     * @param string $message
+     * @param string $apiSuccessCode
+     * @param array $headers
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondWithSuccess($message = 'Success!', $apiSuccessCode = 'success', $headers = [])
+    {
+        return response()->json([
+            'success' => $apiSuccessCode,
+            'message' => $message
+        ], $this->getStatusCode(), $headers);
+    }
+
+
+    /**
      * @param $data
      * @param array $headers
      * @return \Illuminate\Http\JsonResponse

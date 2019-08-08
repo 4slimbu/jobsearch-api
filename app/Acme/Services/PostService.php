@@ -174,4 +174,18 @@ class PostService extends ApiServices
         }
         $post->delete();
     }
+
+    public function flagPost($id)
+    {
+        $post = Post::where('id', $id)->firstOrFail();
+        $newFlagCount = $post->flag_count + 1;
+
+        $result = $post->update(['flag_count' => $newFlagCount]);
+
+        if ($result) {
+            return $this->respondWithSuccess('Post flagged successfully', 'FlagPostSuccess')->setStatusCode(200);
+        }
+
+        return $this->respondInternalError();
+    }
 }

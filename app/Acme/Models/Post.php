@@ -23,6 +23,7 @@ class Post extends Model
         'latitude',
         'longitude',
         'category_id',
+        'flag_count',
         'is_featured'
     ];
 

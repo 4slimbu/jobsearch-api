@@ -54,4 +54,9 @@ class PostController extends ApiController
         $user = auth()->user();
         return $this->postService->destroyPost($input, $user);
     }
+
+    public function flagPost($postId)
+    {
+        return $this->postService->flagPost($postId);
+    }
 }

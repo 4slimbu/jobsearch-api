@@ -25,7 +25,7 @@ class LoginRequest extends ApiRequest
             'email' => 'required_without:fb_token|email',
             'password' => 'required_without:fb_token|string',
             'fb_token' => 'required_without:email,password|string',
-            'device_id'=> 'string'
+            'device_id'=> 'string|nullable'
         ];
     }
 }
