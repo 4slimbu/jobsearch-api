@@ -56,7 +56,7 @@ class Post extends Model
 
     public function media()
     {
-        return $this->hasMany(Media::class, 'post_id');
+        return $this->hasMany(Media::class, 'post_id')->orderBy('is_primary', 'DESC');
     }
 
 }
