@@ -28,7 +28,9 @@ Route::prefix('v1')->namespace('\App\Acme\Controllers')->group(function() {
 
     // Posts
     Route::get('posts', 'PostController@index');
-    Route::post('posts', 'PostController@create');
+    Route::middleware('throttle:10,1')->group(function () {
+        Route::post('posts', 'PostController@create');
+    });
     Route::post('posts/{postId}', 'PostController@update');
     Route::get('posts/{postId}', 'PostController@show');
     Route::delete('posts/{postId}', 'PostController@destroy');
