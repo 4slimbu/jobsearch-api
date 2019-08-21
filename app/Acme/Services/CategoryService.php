@@ -9,7 +9,7 @@ class CategoryService extends ApiServices
 {
     public function getCategories()
     {
-        $categories = Category::where('status', '1')->get();
+        $categories = Category::withCount('posts')->where('status', '1')->get();
         return CategoryResource::collection($categories);
     }
 }

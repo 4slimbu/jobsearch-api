@@ -60,7 +60,10 @@ class PostService extends ApiServices
         }
 
         // Filter by distance
-        if (isset($input['radius'])) {
+        // Sometimes there will be no posts if radius is low, so if user has choosen
+        // to display posts by latest, for now, lets disable radius. Later on, they will
+        // be provided with control to enable disable radius.
+        if (isset($input['radius']) && ! (isset($input['orderBy']) && $input['orderBy'] === 'latest')) {
             $posts = $posts->where(DB::raw($distance), '<',  $input['radius']);
         }
 

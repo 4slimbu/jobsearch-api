@@ -20,6 +20,7 @@ class CategoryResource extends JsonResource
             'icon' => (string)$this->icon,
             'description' => (string)$this->description,
             'sort_order' => (integer)$this->sort_order,
+            'posts_count' => (integer)$this->posts_count
         ];
     }
 }
