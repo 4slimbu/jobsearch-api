@@ -12,7 +12,6 @@ Please copy the following code into the verify page of your app to confirm your 
     <strong>{{ $token }}</strong>
 </p>
 <br>
-You can start posting your ad on LokSewa
 
 Thanks,<br>
 {{ config('app.name') }}
