@@ -76,7 +76,7 @@ class AuthController extends ApiController
         $p = Storage::disk('s3')->put('profile/' . $imageName, $image, 'public');
 //        $image_url = Storage::disk()->url($imageName);
 
-        $filePath =  'https://s3-' . config('filesystems.disks.s3.region') . '.amazonaws.com/loksewa/profile/' . $imageName;
+        $filePath =  'https://s3-' . config('filesystems.disks.s3.region') . '.amazonaws.com/jobsearch/profile/' . $imageName;
 
         // Prepare register inputs
         $input = [

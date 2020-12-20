@@ -4,7 +4,7 @@
     Hello,
 </h1>
 
-Welcome to Kchahiyo.
+Welcome to Jobsearch.
 
 Please use the following code to verify your account:
 <br>

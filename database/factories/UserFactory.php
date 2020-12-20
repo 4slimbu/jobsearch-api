@@ -6,12 +6,12 @@ use Faker\Generator as Faker;
 $factory->define(User::class, function (Faker $faker) {
     // Images already uploaded to aws bucket
     $awsImages = [
-        "https://s3-ap-southeast-2.amazonaws.com/loksewa/loksewa/28/74/UbGo6y1D2bygQgaHbAw70yy6pvbhtiObpZXiMFka.jpeg",
-        "https://s3-ap-southeast-2.amazonaws.com/loksewa/loksewa/28/74/8W3WmM2iJA8TFfse5OSpvhZhhoPUKZNwRhP0jZ15.jpeg",
-        "https://s3-ap-southeast-2.amazonaws.com/loksewa/loksewa/28/74/xAgjVvaCfesZQYIodAxJJ574ZzZoWCHieCkQqE1T.jpeg",
-        "https://s3-ap-southeast-2.amazonaws.com/loksewa/loksewa/28/75/6QmqeaZnV3x8TN3mWlhP4sJLc5NCO7Kd0ZwiEVDJ.jpeg",
-        "https://s3-ap-southeast-2.amazonaws.com/loksewa/loksewa/28/75/GS8Q1CaD5lT30jqTqYtOJz2vjkYpSjwG11oiIAqD.jpeg",
-        "https://s3-ap-southeast-2.amazonaws.com/loksewa/loksewa/28/75/bRhIAxgptDB5mZBXKovwqKbJv3RpviTfLMXuaJ77.jpeg",
+        "https://s3-ap-southeast-2.amazonaws.com/jobsearch/jobsearch/28/74/UbGo6y1D2bygQgaHbAw70yy6pvbhtiObpZXiMFka.jpeg",
+        "https://s3-ap-southeast-2.amazonaws.com/jobsearch/jobsearch/28/74/8W3WmM2iJA8TFfse5OSpvhZhhoPUKZNwRhP0jZ15.jpeg",
+        "https://s3-ap-southeast-2.amazonaws.com/jobsearch/jobsearch/28/74/xAgjVvaCfesZQYIodAxJJ574ZzZoWCHieCkQqE1T.jpeg",
+        "https://s3-ap-southeast-2.amazonaws.com/jobsearch/jobsearch/28/75/6QmqeaZnV3x8TN3mWlhP4sJLc5NCO7Kd0ZwiEVDJ.jpeg",
+        "https://s3-ap-southeast-2.amazonaws.com/jobsearch/jobsearch/28/75/GS8Q1CaD5lT30jqTqYtOJz2vjkYpSjwG11oiIAqD.jpeg",
+        "https://s3-ap-southeast-2.amazonaws.com/jobsearch/jobsearch/28/75/bRhIAxgptDB5mZBXKovwqKbJv3RpviTfLMXuaJ77.jpeg",
     ];
 
     return [

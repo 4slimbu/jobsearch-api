@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $table = 'posts';
-    static public $POST_IMAGES_AWS_PATH = 'loksewa/{userId}/{postId}';
+    static public $POST_IMAGES_AWS_PATH = 'jobsearch/{userId}/{postId}';
 
     /**
      * The attributes that are mass assignable.
