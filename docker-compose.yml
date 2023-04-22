@@ -23,9 +23,6 @@ services:
     ports:
       - "8000:80"
     #- "443:443"
-    environment:
-      - VIRTUAL_HOST=jobsearch.local
-      - LETSENCRYPT_HOST=jobsearch.local
     volumes:
       - ./:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
@@ -48,11 +45,6 @@ services:
     volumes:
       - dbdata:/var/lib/mysql/
       - ./mysql/my.cnf:/etc/mysql/my.cnf
-
-networks:
-  default:
-    external:
-      name: projects_default
 
 #Volumes
 volumes:
