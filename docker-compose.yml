@@ -2,30 +2,27 @@ version: "3"
 services:
   #PHP Service
   app:
-    image: limvus/php-fpm-with-composer
+    image: limvus/webdevops-php-nginx-mysqldump
     container_name: app
     restart: unless-stopped
     tty: true
+    ports:
+     - "8000:80"
     environment:
-      SERVICE_NAME: app
-      SERVICE_TAGS: dev
+      - SERVICE_TAGS=dev
+      - SERVICE_NAME=app
+      - WEB_DOCUMENT_ROOT=/var/www/public
+      - PHP_DISPLAY_ERRORS=1
+      - PHP_MEMORY_LIMIT=2048M
+      - PHP_MAX_EXECUTION_TIME=-1
+      - XDEBUG_MODE=debug
+      - XDEBUG_START_WITH_REQUEST=yes
+      - XDEBUG_CLIENT_PORT=9003
+      - XDEBUG_CLIENT_HOST=host.docker.internal
+      - XDEBUG_MAX_NESTING_LEVEL=1000
     working_dir: /var/www
     volumes:
       - ./:/var/www
-      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
-
-  #Nginx Service
-  webserver:
-    image: nginx:alpine
-    container_name: webserver
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "8000:80"
-    #- "443:443"
-    volumes:
-      - ./:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
 
   #MySQL Service
   db:
@@ -44,9 +41,21 @@ services:
       SERVICE_NAME: mysql
     volumes:
       - dbdata:/var/lib/mysql/
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${DB_USERNAME}
+      PMA_PASSWORD: ${DB_PASSWORD}
+      UPLOAD_LIMIT: 100M
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
 
 #Volumes
 volumes:
   dbdata:
     driver: local
+
